@@ -57,7 +57,7 @@ background-color: var(--primary);
 color: white;
 }
 .add-to-cart-btn {
-  background-color: var(--primary);
+background-color: var(--primary);
 display: block;
 }
 #checkoutBtn {
@@ -73,7 +73,7 @@ background-color: #128C7E;
 <div class="container mx-auto px-4 py-6">
 <div class="flex flex-col md:flex-row justify-between items-center">
 <div class="flex items-center mb-4 md:mb-0">
-<img src="/jamarRes/images/logo.png" alt="شعار مطعم جمار" class="h-16 ml-4">
+<img src="images/logo.png" alt="شعار مطعم جمار" class="h-16 ml-4">
 <h1 class="text-3xl md:text-4xl font-bold">جَمَار | JAMAR</h1>
 </div>
 <nav class="flex space-x-1 space-x-reverse">
@@ -102,7 +102,7 @@ background-color: #128C7E;
 </button>
 </div>
 <div class="md:w-1/2">
-<img src="/jamarRes/images/burger1.jpg" alt="برجر مميز من جمار" class="w-full h-full object-cover">
+<img src="images/burger1.jpg" alt="برجر مميز من جمار" class="w-full h-full object-cover">
 </div>
 </div>
 </div>
@@ -110,7 +110,8 @@ background-color: #128C7E;
 <section id="menuSection" class="hidden mb-16">
 <h2 class="text-3xl font-bold mb-8 text-center section-divider pb-4">قائمتنا</h2>
 <div class="category-filter flex flex-wrap justify-center gap-2 mb-8">
-<button class="category-btn px-4 py-2 rounded-full border border-gray-300 transition active" data-category="burgers">برجر</button>
+<button class="category-btn px-4 py-2 rounded-full border border-gray-300 transition active" data-category="all">جميع الأصناف</button>
+<button class="category-btn px-4 py-2 rounded-full border border-gray-300 transition" data-category="burgers">برجر</button>
 <button class="category-btn px-4 py-2 rounded-full border border-gray-300 transition" data-category="wings">أجنحة</button>
 <button class="category-btn px-4 py-2 rounded-full border border-gray-300 transition" data-category="salads">سلطات</button>
 <button class="category-btn px-4 py-2 rounded-full border border-gray-300 transition" data-category="rolls">رولات</button>
@@ -131,7 +132,7 @@ background-color: #128C7E;
 <p class="text-gray-700">مهمتنا هي تقديم تجربة طعام لا تُنسى حيث تلتقي الجودة بالإبداع في كل قضمة.</p>
 </div>
 <div class="md:w-1/2">
-<img src="/jamarRes/images/logo.png" alt="Jamar-Logo" class="w-full h-full object-cover rounded-xl">
+<img src="images/logo.png" alt="طاهٍ يحضر برجر جورمي" class="w-full h-full object-cover rounded-xl">
 </div>
 </div>
 <div class="py-8 border-t border-gray-200 mt-8">
@@ -139,14 +140,14 @@ background-color: #128C7E;
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 <div class="flex flex-col items-center text-center">
 <div class="w-32 h-32 rounded-full overflow-hidden shadow-md">
-<img src="/jamarRes/images/logo.png" alt="صورة يزن" class="w-full h-full object-cover">
+<img src="images/logo.png" alt="Hasan" class="w-full h-full object-cover">
 </div>
 <h3 class="font-semibold mt-2">حسن</h3>
 <p class="text-sm text-gray-600 mt-1">**** *** ، <br>******.</p>
 </div>
 <div class="flex flex-col items-center text-center">
 <div class="w-32 h-32 rounded-full overflow-hidden shadow-md">
-<img src="/jamarRes/images/logo.png" alt="صورة حسن" class="w-full h-full object-cover">
+<img src="images/logo.png" alt="Yazan" class="w-full h-full object-cover">
 </div>
 <h3 class="font-semibold mt-2">يزن</h3>
 <p class="text-sm text-gray-600 mt-1">***** <br>*********.</p>
@@ -327,9 +328,7 @@ categories: ['burgers', 'wings', 'salads', 'rolls', 'tacos', 'snacks', 'drinks']
 burgers: [
 { id: 101, name: 'Beef Burger', arabicName: 'برجر لحم بقري', price: 25.99, image: 'https://placehold.co/600x400', alt: 'برجر لحم بقري بالجبنة الذائبة والخضروات الطازجة' },
 { id: 102, name: 'Fried Chicken Burger', arabicName: 'برجر دجاج مقلي', price: 22.50, image: 'https://placehold.co/600x400', alt: 'برجر دجاج مقلي مقرمش' },
-{ id: 103, name: 'Mushroom Swiss Burger', arabicName: 'برجر فطر سويسري', price: 28.00, image: 'https://placehold.co/600x400', alt: 'برجر لحم مع فطر وجبنة سويسرية' },
-{ id: 104, name: 'Mushroom Swiss Burger', arabicName: 'برجر فطر سويسري', price: 28.00, image: 'https://placehold.co/600x400', alt: 'برجر لحم مع فطر وجبنة سويسرية' },
-{ id: 105, name: 'Mushroom Swiss Burger', arabicName: 'برجر فطر سويسري', price: 28.00, image: 'https://placehold.co/600x400', alt: 'برجر لحم مع فطر وجبنة سويسرية' }
+{ id: 103, name: 'Mushroom Swiss Burger', arabicName: 'برجر فطر سويسري', price: 28.00, image: 'https://placehold.co/600x400', alt: 'برجر لحم مع فطر وجبنة سويسرية' }
 ],
 wings: [
 { id: 301, name: 'Buffalo Wings', arabicName: 'أجنحة بافلو', price: 35.99, image: 'https://placehold.co/600x400', alt: 'أجنحة دجاج مغطاة بصوص البافلو' },
@@ -407,13 +406,13 @@ activeBtn.classList.add('active');
 homeBtn.addEventListener('click', () => showSection(homeSection, homeBtn));
 menuBtn.addEventListener('click', () => {
 showSection(menuSection, menuBtn);
-renderMenuItems('burgers');
+renderMenuItems('all');
 });
 aboutBtn.addEventListener('click', () => showSection(aboutSection, aboutBtn));
 contactBtn.addEventListener('click', () => showSection(contactSection, contactBtn));
 exploreMenuBtn.addEventListener('click', () => {
 showSection(menuSection, menuBtn);
-renderMenuItems('burgers');
+renderMenuItems('all');
 });
 // السلة
 function toggleCartModal() {
@@ -557,9 +556,18 @@ updateCartDisplay();
 toggleCartModal();
 });
 // عرض عناصر القائمة
-function renderMenuItems(category) {
+function renderMenuItems(category = 'all') {
+let itemsToRender = [];
+if (category === 'all') {
+menuDatabase.categories.forEach(cat => {
+if (menuDatabase[cat]) {
+itemsToRender = itemsToRender.concat(menuDatabase[cat]);
+}
+});
+} else {
+itemsToRender = menuDatabase[category];
+}
 menuItemsContainer.innerHTML = '';
-const itemsToRender = menuDatabase[category] || [];
 itemsToRender.forEach(item => {
 const itemHtml = `
 <div class="bg-white rounded-xl shadow-lg overflow-hidden menu-card transition-all duration-300">
@@ -568,7 +576,7 @@ const itemHtml = `
 <h3 class="text-xl font-bold mb-2">${item.arabicName}</h3>
 <div class="flex justify-between items-center">
 <span class="price-tag text-white font-bold py-1 px-4 rounded-full">${item.price.toFixed(2)} شيكل</span>
-<button class="add-to-cart-btn bg-primary text-white font-bold py-2 px-4 rounded-lg transition duration-300" data-id="${item.id}" data-category="${category}">
+<button class="add-to-cart-btn bg-primary text-white font-bold py-2 px-4 rounded-lg transition duration-300" data-id="${item.id}">
 أضف إلى السلة
 </button>
 </div>
@@ -581,8 +589,7 @@ menuItemsContainer.insertAdjacentHTML('beforeend', itemHtml);
 document.querySelectorAll('.add-to-cart-btn').forEach(button => {
 button.addEventListener('click', (e) => {
 const itemId = parseInt(e.target.dataset.id);
-const itemCategory = e.target.dataset.category;
-const itemToAdd = menuDatabase[itemCategory].find(item => item.id === itemId);
+const itemToAdd = allMenuItems.find(item => item.id === itemId);
 if (itemToAdd) {
 addToCart(itemToAdd);
 }
@@ -599,7 +606,7 @@ renderMenuItems(button.dataset.category);
 });
 // عند تحميل الصفحة لأول مرة
 document.addEventListener('DOMContentLoaded', () => {
-renderMenuItems('burgers');
+renderMenuItems('all');
 showSection(homeSection, homeBtn);
 });
 </script>
