@@ -114,35 +114,807 @@
         </div>
     </header>
     <main class="container mx-auto px-4 py-8">
-        <section id="menuSection">
-            <h2 class="text-3xl font-bold mb-8 text-center">قائمة الطعام</h2>
-            <div id="menuItems">
-                <button onclick="customizeWings()">تخصيص</button>
+        <section id="homeSection" class="mb-16">
+            <div class="bg-gray-900 rounded-xl overflow-hidden shadow-xl">
+                <div class="flex flex-col md:flex-row-reverse">
+                    <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">استمتع بأطيب المذاقات من <span class="text-primary">جمار</span></h2>
+                        <p class="text-gray-300 text-lg mb-6">برجر مميز، أجنحة لذيذة، وسلطات طازجة معدّة بأجود المكونات.</p>
+                        <button id="exploreMenuBtn" class="bg-primary hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg w-full md:w-auto transition duration-300">
+                            تصفّح القائمة
+                        </button>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img src="images/burger1.jpg" alt="برجر مميز من جمار" class="w-full h-full object-cover">
+                    </div>
+                </div>
             </div>
         </section>
-    </main>
-    <!-- تخصيص الأجنحة -->
-    <div id="customizeWingsModal" style="display:none;">
-        <h3>تخصيص الأجنحة</h3>
-        <button onclick="selectOption('قطع')">قطع</button>
-        <button onclick="selectOption('وزن')">وزن</button>
-        <div id="options"></div>
-    </div>
-    <script>
-        function customizeWings() {
-            const modal = document.getElementById('customizeWingsModal');
-            modal.style.display = 'block';
-        }
+        <section id="menuSection" class="hidden mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center section-divider pb-4">قائمتنا</h2>
+            <div class="category-filter flex flex-wrap justify-center gap-2 mb-8">
+                <button class="category-btn px-4 py-2 rounded-full border border-gray-300 transition active" data-category="all">جميع الأصناف</button>
+                <button class="category-btn px-4 py-2 rounded-full border border-gray-300 transition" data-category="beefBurgers">برجر لحم</button>
+                <button class="category-btn px-4 py-2 rounded-full border border-gray-300 transition" data-category="chickenBurgers">برجر دجاج</button>
+                <button class="category-btn px-4 py-2 rounded-full border border-gray-300 transition" data-category="wings">أجنحة</button>
+                <button class="category-btn px-4 py-2 rounded-full border border-gray-300 transition" data-category="salads">سلطات</button>
+                <button class="category-btn px-4 py-2 rounded-full border border-gray-300 transition" data-category="rolls">رولات</button>
+                <button class="category-btn px-4 py-2 rounded-full border border-gray-300 transition" data-category="tacos">تاكوس</button>
+                <button class="category-btn px-4 py-2 rounded-full border border-gray-300 transition" data-category="snacks">مقبلات</button>
+                <button class="category-btn px-4 py-2 rounded-full border border-gray-300 transition" data-category="drinks">مشروبات</button>
+            </div>
+            <div id="menuItemsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+        </section>
+        <section id="aboutSection" class="hidden mb-16">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden p-8">
+                <h2 class="text-3xl font-bold mb-8 text-center section-divider pb-4">عن جَمَار</h2>
+                <div class="flex flex-col md:flex-row gap-8 mb-8">
+                    <div class="md:w-1/2">
+                        <p class="text-gray-700 mb-4">تأسس مطعم جمار عام 2023 ليقدم لكم مزيجاً فريداً يجمع بين الأذواق التقليدية وتقنيات الطبخ الحديثة. يعكس اسم "جمار" الذي يعني "لذيذ" في النصوص الطهوّية القديمة التزامنا بتقديم تجارب طعام استثنائية.</p>
+                        <p class="text-gray-700 mb-4">نحن نستخدم فقط أجود المكونات الطازجة، ونحضر كل وجبة بعناية واهتمام بالتفاصيل. يتم إعداد برجرنا من لحم بقري فاخر 100%، ويتم تحضير الدجاج طازجاً يومياً.</p>
+                        <p class="text-gray-700">مهمتنا هي تقديم تجربة طعام لا تُنسى حيث تلتقي الجودة بالإبداع في كل قضمة.</p>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img src="images/logorbg.png" alt="logo" class="w-full h-full object-cover rounded-xl">
+                    </div>
+                </div>
+                <div class="py-8 border-t border-gray-200 mt-8">
+                    <h2 class="text-2xl font-bold text-center mb-6 section-divider pb-4">قصة نجاحنا</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-32 h-32 rounded-full overflow-hidden shadow-md">
+                                <img src="images/logorbg.png" alt="Hasan" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-semibold mt-2">حسن</h3>
+                            <p class="text-sm text-gray-600 mt-1">**** *** ، <br>******.</p>
+                        </div>
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-32 h-32 rounded-full overflow-hidden shadow-md">
+                                <img src="images/logorbg.png" alt="Yazan" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-semibold mt-2">يزن</h3>
+                            <p class="text-sm text-gray-600 mt-1">***** <br>*********.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contactSection" class="hidden mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center section-divider pb-4">اتصل بنا</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold mb-4">زورونا</h3>
+                    <div class="flex items-start mb-4">
+                        <div class="ml-4 mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </div>
+                        <p>123 الشارع الرئيسي، <br> طولكرم - عتيل ، فلسطين </p>
+                    </div>
+                    <div class="flex items-start mb-4">
+                        <div class="ml-4 mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                        </div>
+                        <p>+972 599 888 358</p>
+                    </div>
+                    <div class="flex items-start mb-4">
+                        <div class="ml-4 mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <p>info@jamar.com</p>
+                    </div>
+                    <div class="mt-6">
+                        <h4 class="font-bold mb-2">ساعات العمل</h4>
+                        <p class="mb-1">الأحد - الخميس: 11:00 صباحاً - 11:00 مساءً</p>
+                        <p>الجمعة - السبت: 12:00 ظهراً - 12:00 منتصف الليل</p>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold mb-4">أرسل لنا رسالة</h3>
+                    <form id="contactForm">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 mb-2">الاسم</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 mb-2">البريد الإلكتروني</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="block text-gray-700 mb-2">الرسالة</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                        </div>
+                        <button type="submit" class="bg-primary bg-orange-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+                            إرسال الرسالة
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-xl shadow-2xl max-w-md w-full max-h-[80vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold">طلباتك</h3>
+                        <button id="closeCartBtn" class="text-gray-500 hover:text-gray-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-bold mb-2">نوع الطلب:</h4>
+                        <div id="orderTypeButtons" class="flex gap-2">
+                            <button data-type="dineIn" class="px-4 py-2 border rounded-lg transition active">داخل المطعم</button>
+                            <button data-type="takeaway" class="px-4 py-2 border rounded-lg transition">توصيل خارجي</button>
+                        </div>
+                        <div id="deliveryCities" class="mt-3 hidden">
+                            <h4 class="font-bold mb-2">اختر المدينة (رسوم التوصيل):</h4>
+                            <div id="cityButtons" class="flex flex-wrap gap-2">
+                                <button class="city-btn px-4 py-2 border rounded-full transition" data-city="tulkarm" data-delivery="10">طولكرم 10 ش</button>
+                                <button class="city-btn px-4 py-2 rounded-full transition" data-city="jenin" data-delivery="20">جنين 20 ش</button>
+                                <button class="city-btn px-4 py-2 rounded-full transition" data-city="nablus" data-delivery="25">نابلس 25 ش</button>
+                                <button class="city-btn px-4 py-2 rounded-full transition" data-city="ramallah" data-delivery="30">رام الله 30 ش</button>
+                            </div>
+                        </div>
+                        <div id="deliveryAddress" class="mt-3 hidden">
+                            <h4 class="font-bold mb-2">عنوان التوصيل:</h4>
+                            <p class="text-sm text-gray-600 mb-2">يرجى كتابة عنوانك بالتفصيل (اسم الشارع، رقم المبنى، الحي).</p>
+                            <textarea id="addressInput" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="مثال: شارع الإرسال، مبنى رقم 10، حي المصيون"></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <h4 class="font-bold mb-2">طريقة الدفع:</h4>
+                        <div id="paymentMethodButtons" class="flex gap-2">
+                            <button data-method="cash" class="px-4 py-2 border rounded-lg transition active">الدفع عند الاستلام</button>
+                            <button data-method="visa" class="px-4 py-2 border rounded-lg transition">فيزا</button>
+                        </div>
+                    </div>
+                    <div id="cartItemsContainer" class="mb-6">
+                        <div class="text-center py-8 text-gray-500" id="emptyCartMessage">
+                            سلة التسوق فارغة
+                        </div>
+                    </div>
+                    <div class="border-t pt-4">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold">المجموع:</span>
+                            <span id="cartSubtotal" class="font-bold">0.00 شيكل</span>
+                        </div>
+                        <div id="deliveryFeeContainer" class="flex justify-between mb-2 hidden">
+                            <span class="font-semibold">رسوم التوصيل:</span>
+                            <span id="deliveryFee" class="font-bold">0.00 شيكل</span>
+                        </div>
+                        <div class="flex justify-between text-lg">
+                            <span class="font-bold">الإجمالي:</span>
+                            <span id="cartTotal" class="font-bold text-primary">0.00 شيكل</span>
+                        </div>
+                    </div>
+                    <button id="checkoutBtn" class="w-full mt-6 bg-whatsapp-green hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp"></i>
+                        إكمال الطلب عبر واتساب
+                    </button>
+                </div>
+            </div>
+        </div>
 
-        function selectOption(option) {
-            const optionsDiv = document.getElementById('options');
-            optionsDiv.innerHTML = '';
-            if (option === 'قطع') {
-                optionsDiv.innerHTML = '<button>3 قطع</button><button>6 قطع</button><button>12 قطع</button>';
-            } else if (option === 'وزن') {
-                optionsDiv.innerHTML = '<button>250 جرام</button><button>500 جرام</button><button>1 كغ</button>';
+        <div id="customizeModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold">خصّص طلبك</h3>
+                    <button id="closeCustomizeBtn" class="text-gray-500 hover:text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex justify-between items-center mb-4">
+                    <h4 class="font-bold text-xl">السعر الإجمالي:</h4>
+                    <span id="customizePrice" class="font-bold text-2xl text-primary">0.00 شيكل</span>
+                </div>
+                <div id="weightOptionsContainer" class="mb-4 hidden">
+                    <h4 class="font-bold mb-2">اختر الوزن:</h4>
+                    <div id="weightsOptions" class="flex flex-wrap gap-2">
+                        </div>
+                </div>
+                <div class="mb-4">
+                    <h4 class="font-bold mb-2">اختر السلطة:</h4>
+                    <div id="saladsOptions" class="flex flex-wrap gap-2">
+                        </div>
+                </div>
+                <div class="mb-6">
+                    <h4 class="font-bold mb-2">اختر الصوص:</h4>
+                    <div id="saucesOptions" class="flex flex-wrap gap-2">
+                        </div>
+                </div>
+                <button id="finalizeAddBtn" class="w-full mt-6 bg-primary text-white font-bold py-3 rounded-lg transition duration-300">أضف إلى السلة</button>
+            </div>
+        </div>
+
+        <div id="notification" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-green-500 text-white py-4 px-8 rounded-lg shadow-lg z-50 opacity-0 transition-opacity duration-300">
+            <i class="fas fa-check-circle mr-2"></i> تم إضافة المنتج إلى السلة!
+        </div>
+    </main>
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-4">جمار</h3>
+                    <p class="text-gray-400">برجر مميز، أجنحة لذيذة، وسلطات طازجة معدّة بأجود المكونات.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">روابط سريعة</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">الرئيسية</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">القائمة</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">عن المطعم</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">معلومات الاتصال</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>123 شارع جورمي، رام الله</li>
+                        <li>+972 599 888 358</li>
+                        <li>info@jamar.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">تابعنا</h4>
+                    <div class="flex space-x-4 space-x-reverse">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 مطعم جمار. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // قاعدة البيانات
+        const menuDatabase = {
+            categories: ['beefBurgers', 'chickenBurgers', 'wings', 'salads', 'rolls', 'tacos', 'snacks', 'drinks'],
+            beefBurgers: [
+                { id: 101, name: 'Beef Burger', arabicName: 'برجر لحم بقري', price: 25.99, description: 'شريحة لحم بقري، جبنة، خس، طماطم وصوص خاص.', image: 'https://placehold.co/600x400', alt: 'برجر لحم بقري بالجبنة الذائبة والخضروات الطازجة', category: 'beefBurgers' },
+                { id: 102, name: 'Mushroom Swiss Burger', arabicName: 'برجر فطر سويسري', price: 28.00, description: 'لحم بقري، فطر سوتيه، وجبنة سويسرية ذائبة.', image: 'https://placehold.co/600x400', alt: 'برجر لحم مع فطر وجبنة سويسرية', category: 'beefBurgers' }
+            ],
+            chickenBurgers: [
+                { id: 103, name: 'Fried Chicken Burger', arabicName: 'برجر دجاج مقلي', price: 22.50, description: 'قطعة دجاج مقرمشة، خس، مايونيز، ومخلل.', image: 'https://placehold.co/600x400', alt: 'برجر دجاج مقلي مقرمش', category: 'chickenBurgers' }
+            ],
+            wings: [
+                { id: 301, name: 'Buffalo Wings', arabicName: 'أجنحة بافلو', price: 35.99, description: 'أجنحة دجاج مقلية ومغطاة بصوص البافلو الحار.', image: 'https://placehold.co/600x400', alt: 'أجنحة دجاج مغطاة بصوص البافلو', category: 'wings' },
+                { id: 302, name: 'BBQ Wings', arabicName: 'أجنحة باربيكيو', price: 32.00, description: 'أجنحة دجاج مشوية بصوص الباربكيو المدخن.', image: 'https://placehold.co/600x400', alt: 'أجنحة دجاج مشوية بصوص الباربيكيو', category: 'wings' }
+            ],
+            salads: [
+                { id: 401, name: 'Chicken Caesar Salad', arabicName: 'سلطة سيزر بالدجاج', price: 28.50, description: 'خس، دجاج مشوي، خبز محمص، وصوص سيزر.', image: 'https://placehold.co/600x400', alt: 'سلطة سيزر بالدجاج المشوي', category: 'salads' },
+                { id: 402, name: 'Greek Salad', arabicName: 'سلطة يونانية', price: 24.00, description: 'خيار، طماطم، بصل، زيتون، وجبنة فيتا.', image: 'https://placehold.co/600x400', alt: 'سلطة يونانية مع جبنة فيتا وزيتون', category: 'salads' }
+            ],
+            rolls: [
+                { id: 501, name: 'Chicken Roll', arabicName: 'رول الدجاج', price: 19.99, description: 'دجاج مشوي، خضروات طازجة، ولفائف خبز التورتيلا.', image: 'https://placehold.co/600x400', alt: 'رول دجاج مشوي مع الخضروات', category: 'rolls' }
+            ],
+            tacos: [
+                { id: 601, name: 'Beef Tacos', arabicName: 'تاكو لحم بقري', price: 24.00, description: 'تاكو محشو باللحم المفروم المتبل والجبنة.', image: 'https://placehold.co/600x400', alt: 'تاكو لحم بقري مع الجبنة', category: 'tacos' }
+            ],
+            snacks: [
+                { id: 701, name: 'French Fries', arabicName: 'بطاطس مقلية', price: 8.50, description: 'بطاطس مقلية ذهبية ومقرمشة.', image: 'https://placehold.co/600x400', alt: 'طبق من البطاطس المقلية', category: 'snacks' },
+                { id: 702, name: 'Mozzarella Sticks', arabicName: 'أصابع الموزاريلا', price: 15.00, description: 'أصابع موزاريلا ذهبية مقلية تقدم مع صوص المارينارا.', image: 'https://placehold.co/600x400', alt: 'أصابع موزاريلا مقلية', category: 'snacks' }
+            ],
+            drinks: [
+                { id: 801, name: 'Coca-Cola', arabicName: 'كوكا كولا', price: 5.00, description: 'مشروب غازي منعش.', image: 'https://placehold.co/600x400', alt: 'علبة كوكا كولا', category: 'drinks' },
+                { id: 802, name: 'Orange Juice', arabicName: 'عصير برتقال', price: 12.00, description: 'عصير برتقال طبيعي طازج.', image: 'https://placehold.co/600x400', alt: 'كأس عصير برتقال طازج', category: 'drinks' }
+            ],
+            saladsAddons: [
+                { id: 901, arabicName: 'سلطة خضراء', price: 0 },
+                { id: 902, arabicName: 'سلطة تبولة', price: 0 },
+                { id: 903, arabicName: 'سلطة فتوش', price: 0 },
+                { id: 904, arabicName: 'سلطة يونانية', price: 0 },
+                { id: 905, arabicName: 'سلطة سيزر', price: 0 },
+                { id: 906, arabicName: 'سلطة كول سلو', price: 0 },
+                { id: 907, arabicName: 'سلطة أفوكادو', price: 0 },
+                { id: 908, arabicName: 'سلطة جرجير', price: 0 }
+            ],
+            saucesAddons: [
+                { id: 1001, arabicName: 'صوص الثوم', price: 0 },
+                { id: 1002, arabicName: 'صوص الباربكيو', price: 0 },
+                { id: 1003, arabicName: 'صوص الرانش', price: 0 },
+                { id: 1004, arabicName: 'صوص الشيف', price: 0 },
+                { id: 1005, arabicName: 'صوص الجبن', price: 0 }
+            ],
+            weightsAddons: [
+                { id: 1101, arabicName: '120 جرام', price: 0 },
+                { id: 1102, arabicName: '160 جرام', price: 5.00 },
+                { id: 1103, arabicName: '320 جرام', price: 15.00 }
+            ]
+        };
+
+        const allMenuItems = Object.values(menuDatabase).filter(val => Array.isArray(val)).flat();
+
+        const navBtns = document.querySelectorAll('.nav-btn');
+        const homeSection = document.getElementById('homeSection');
+        const menuSection = document.getElementById('menuSection');
+        const aboutSection = document.getElementById('aboutSection');
+        const contactSection = document.getElementById('contactSection');
+        const exploreMenuBtn = document.getElementById('exploreMenuBtn');
+        const cartBtn = document.getElementById('cartBtn');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const cartModal = document.getElementById('cartModal');
+        const menuItemsContainer = document.getElementById('menuItemsContainer');
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+        const emptyCartMessage = document.getElementById('emptyCartMessage');
+        const cartCount = document.getElementById('cartCount');
+        const cartSubtotal = document.getElementById('cartSubtotal');
+        const deliveryFee = document.getElementById('deliveryFee');
+        const deliveryFeeContainer = document.getElementById('deliveryFeeContainer');
+        const cartTotal = document.getElementById('cartTotal');
+        const orderTypeButtons = document.querySelectorAll('#orderTypeButtons button');
+        const deliveryCities = document.getElementById('deliveryCities');
+        const cityButtons = document.querySelectorAll('#cityButtons .city-btn');
+        const deliveryAddress = document.getElementById('deliveryAddress');
+        const addressInput = document.getElementById('addressInput');
+        const paymentMethodButtons = document.querySelectorAll('#paymentMethodButtons button');
+        const notification = document.getElementById('notification');
+
+        const customizeModal = document.getElementById('customizeModal');
+        const closeCustomizeBtn = document.getElementById('closeCustomizeBtn');
+        const customizePriceDisplay = document.getElementById('customizePrice');
+        const weightOptionsContainer = document.getElementById('weightOptionsContainer');
+        const weightsOptionsContainer = document.getElementById('weightsOptions');
+        const saladsOptionsContainer = document.getElementById('saladsOptions');
+        const saucesOptionsContainer = document.getElementById('saucesOptions');
+        const finalizeAddBtn = document.getElementById('finalizeAddBtn');
+        let currentCustomizingItem = null;
+        let selectedWeight = null;
+        let selectedSalads = [];
+        let selectedSauces = [];
+
+        let cart = [];
+        let currentOrderType = 'dineIn';
+        let currentDeliveryFee = 0;
+        let currentPaymentMethod = 'cash';
+
+        function navigateTo(sectionId) {
+            const sections = {
+                homeSection,
+                menuSection,
+                aboutSection,
+                contactSection
+            };
+            for (const id in sections) {
+                sections[id].classList.add('hidden');
+            }
+            sections[sectionId].classList.remove('hidden');
+
+            navBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.section === sectionId) {
+                    btn.classList.add('active');
+                }
+            });
+            if (sectionId === 'menuSection') {
+                renderMenuItems('all');
             }
         }
+
+        navBtns.forEach(button => {
+            button.addEventListener('click', () => {
+                const sectionId = button.dataset.section;
+                window.location.hash = sectionId;
+            });
+        });
+        exploreMenuBtn.addEventListener('click', () => {
+            window.location.hash = 'menuSection';
+        });
+
+        window.addEventListener('hashchange', () => {
+            const sectionId = window.location.hash.substring(1);
+            if (sectionId) {
+                navigateTo(sectionId);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const initialSection = window.location.hash.substring(1) || 'homeSection';
+            navigateTo(initialSection);
+        });
+
+        function toggleCartModal() {
+            cartModal.classList.toggle('hidden');
+            updateCartDisplay();
+        }
+
+        cartBtn.addEventListener('click', toggleCartModal);
+        closeCartBtn.addEventListener('click', toggleCartModal);
+
+        window.addEventListener('click', (event) => {
+            if (event.target === cartModal) {
+                toggleCartModal();
+            }
+        });
+
+        function showNotification() {
+            notification.classList.add('opacity-100');
+            notification.classList.remove('opacity-0');
+            setTimeout(() => {
+                notification.classList.remove('opacity-100');
+                notification.classList.add('opacity-0');
+            }, 2000);
+        }
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+
+        function updateCartDisplay() {
+            if (cart.length === 0) {
+                emptyCartMessage.classList.remove('hidden');
+                cartItemsContainer.innerHTML = '';
+            } else {
+                emptyCartMessage.classList.add('hidden');
+                cartItemsContainer.innerHTML = cart.map((item, index) => {
+                    let optionsHtml = '';
+                    if (item.selectedWeight) {
+                        optionsHtml += `<p class="text-sm text-gray-500 mr-4">▪ الوزن: ${item.selectedWeight.arabicName}</p>`;
+                    }
+                    if (item.selectedSalads && item.selectedSalads.length > 0) {
+                        item.selectedSalads.forEach(salad => {
+                            optionsHtml += `<p class="text-sm text-gray-500 mr-4">▪ مع سلطة: ${salad.arabicName}</p>`;
+                        });
+                    }
+                    if (item.selectedSauces && item.selectedSauces.length > 0) {
+                        item.selectedSauces.forEach(sauce => {
+                            optionsHtml += `<p class="text-sm text-gray-500 mr-4">▪ مع صوص: ${sauce.arabicName}</p>`;
+                        });
+                    }
+                    
+                    const itemPrice = (item.price + (item.selectedWeight ? item.selectedWeight.price : 0));
+                    return `
+                        <div class="cart-item py-3 px-2 flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold">${item.arabicName || item.name}</h4>
+                                <p class="text-sm text-gray-600">${(itemPrice * item.quantity).toFixed(2)} شيكل</p>
+                                ${optionsHtml}
+                            </div>
+                            <div class="flex items-center space-x-2 space-x-reverse">
+                                <div class="quantity-control flex items-center space-x-1 space-x-reverse">
+                                    <button class="quantity-btn minus-btn" data-index="${index}">-</button>
+                                    <span class="w-6 text-center">${item.quantity}</span>
+                                    <button class="quantity-btn plus-btn" data-index="${index}">+</button>
+                                </div>
+                                <button class="remove-item text-lg hover:text-red-700 transition trash-btn" data-index="${index}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                document.querySelectorAll('.remove-item').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const itemIndex = parseInt(btn.dataset.index);
+                        cart.splice(itemIndex, 1);
+                        updateCartCount();
+                        updateCartDisplay();
+                    });
+                });
+
+                document.querySelectorAll('.plus-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const itemIndex = parseInt(e.target.dataset.index);
+                        cart[itemIndex].quantity++;
+                        updateCartCount();
+                        updateCartDisplay();
+                    });
+                });
+
+                document.querySelectorAll('.minus-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const itemIndex = parseInt(e.target.dataset.index);
+                        if (cart[itemIndex].quantity > 1) {
+                            cart[itemIndex].quantity--;
+                            updateCartCount();
+                            updateCartDisplay();
+                        }
+                    });
+                });
+            }
+            calculateTotals();
+        }
+
+        orderTypeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                orderTypeButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentOrderType = button.dataset.type;
+                if (currentOrderType === 'takeaway') {
+                    deliveryCities.classList.remove('hidden');
+                    deliveryAddress.classList.remove('hidden');
+                    deliveryFeeContainer.classList.remove('hidden');
+                } else {
+                    deliveryCities.classList.add('hidden');
+                    deliveryAddress.classList.add('hidden');
+                    deliveryFeeContainer.classList.add('hidden');
+                    currentDeliveryFee = 0;
+                }
+                calculateTotals();
+            });
+        });
+
+        cityButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                cityButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentDeliveryFee = parseFloat(button.dataset.delivery);
+                calculateTotals();
+            });
+        });
+
+        paymentMethodButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                paymentMethodButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentPaymentMethod = button.dataset.method;
+            });
+        });
+
+        function calculateTotals() {
+            const subtotal = cart.reduce((sum, item) => {
+                const itemPrice = item.price + (item.selectedWeight ? item.selectedWeight.price : 0);
+                return sum + (itemPrice * item.quantity);
+            }, 0);
+            const delivery = currentOrderType === 'takeaway' ? currentDeliveryFee : 0;
+            const total = subtotal + delivery;
+            cartSubtotal.textContent = subtotal.toFixed(2) + ' شيكل';
+            deliveryFee.textContent = delivery.toFixed(2) + ' شيكل';
+            cartTotal.textContent = total.toFixed(2) + ' شيكل';
+        }
+
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('السلة فارغة! يرجى إضافة أصناف أولاً.');
+                return;
+            }
+
+            const phoneNumber = '+972599888358';
+            let message = 'السلام عليكم، أريد طلب التالي من منيو جَمَار :\n\n';
+
+            cart.forEach(item => {
+                const itemPrice = item.price + (item.selectedWeight ? item.selectedWeight.price : 0);
+                message += `- ${item.arabicName || item.name} (${item.quantity}): ${itemPrice.toFixed(2)} شيكل\n`;
+                if (item.selectedWeight) {
+                    message += `  > الوزن: ${item.selectedWeight.arabicName}\n`;
+                }
+                if (item.selectedSalads && item.selectedSalads.length > 0) {
+                    item.selectedSalads.forEach(salad => {
+                        message += `  > مع سلطة: ${salad.arabicName}\n`;
+                    });
+                }
+                if (item.selectedSauces && item.selectedSauces.length > 0) {
+                    item.selectedSauces.forEach(sauce => {
+                        message += `  > مع صوص: ${sauce.arabicName}\n`;
+                    });
+                }
+            });
+
+            message += `\nالمجموع: ${cartSubtotal.textContent}`;
+            if (currentOrderType === 'takeaway') {
+                message += `\nرسوم التوصيل: ${deliveryFee.textContent}`;
+            }
+            message += `\nالإجمالي: ${cartTotal.textContent}\n\n`;
+            message += `نوع الطلب: ${currentOrderType === 'dineIn' ? 'داخل المطعم' : 'توصيل خارجي'}`;
+
+            if (currentOrderType === 'takeaway') {
+                const selectedCityButton = document.querySelector('#cityButtons .active');
+                const selectedCityName = selectedCityButton ? selectedCityButton.textContent.split(' ')[0] : '[لم يتم اختيار مدينة]';
+                const deliveryAddressText = addressInput.value.trim();
+                message += `\nالمدينة: ${selectedCityName}`;
+                message += `\nعنوان التوصيل: ${deliveryAddressText || '[لم يتم إدخال عنوان]'}`;
+            }
+
+            message += `\nطريقة الدفع: ${currentPaymentMethod === 'cash' ? 'الدفع عند الاستلام' : 'فيزا'}\n\n`;
+            message += 'شكراً لكم!';
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+
+            cart = [];
+            updateCartCount();
+            updateCartDisplay();
+            toggleCartModal();
+        });
+
+        function renderMenuItems(category = 'all') {
+            let itemsToRender = [];
+            if (category === 'all') {
+                itemsToRender = menuDatabase.beefBurgers.concat(menuDatabase.chickenBurgers).concat(menuDatabase.wings).concat(menuDatabase.salads).concat(menuDatabase.rolls).concat(menuDatabase.tacos).concat(menuDatabase.snacks).concat(menuDatabase.drinks);
+            } else {
+                itemsToRender = menuDatabase[category];
+            }
+
+            menuItemsContainer.innerHTML = '';
+            itemsToRender.forEach(item => {
+                const needsCustomization = ['beefBurgers', 'chickenBurgers', 'rolls', 'tacos'].includes(item.category);
+                const buttonText = needsCustomization ? 'تخصيص' : 'أضف إلى السلة';
+
+                const itemHtml = `
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden menu-card transition-all duration-300">
+                        <img src="${item.image}" alt="${item.alt}" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-1">${item.arabicName}</h3>
+                            <p class="text-gray-500 text-sm mb-3">${item.description}</p>
+                            <div class="flex justify-between items-center">
+                                <span class="price-tag text-white font-bold py-1 px-4 rounded-full">${item.price.toFixed(2)} شيكل</span>
+                                <button class="add-to-cart-btn bg-primary text-white font-bold py-2 px-4 rounded-lg transition duration-300" data-id="${item.id}">
+                                    ${buttonText}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                menuItemsContainer.insertAdjacentHTML('beforeend', itemHtml);
+            });
+
+            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const itemId = parseInt(e.target.dataset.id);
+                    const item = allMenuItems.find(item => item.id === itemId);
+                    
+                    if (item) {
+                        const needsCustomization = ['beefBurgers', 'chickenBurgers', 'rolls', 'tacos'].includes(item.category);
+                        
+                        if (needsCustomization) {
+                            openCustomizeModal(item);
+                        } else {
+                            const existingItem = cart.find(cartItem => cartItem.id === item.id);
+                            if (existingItem) {
+                                existingItem.quantity++;
+                            } else {
+                                cart.push({ ...item, quantity: 1 });
+                            }
+                            updateCartCount();
+                            showNotification();
+                        }
+                    }
+                });
+            });
+        }
+
+        categoryBtns.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryBtns.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                renderMenuItems(button.dataset.category);
+            });
+        });
+
+        function openCustomizeModal(item) {
+            currentCustomizingItem = item;
+            customizeModal.classList.remove('hidden');
+            
+            selectedWeight = null;
+            selectedSalads = [];
+            selectedSauces = [];
+
+            function updateCustomizePrice() {
+                let totalPrice = item.price;
+                if (selectedWeight) {
+                    totalPrice += selectedWeight.price;
+                }
+                customizePriceDisplay.textContent = totalPrice.toFixed(2) + ' شيكل';
+            }
+
+            if (item.category === 'beefBurgers') {
+                weightOptionsContainer.classList.remove('hidden');
+                
+                weightsOptionsContainer.innerHTML = menuDatabase.weightsAddons.map((weight, index) => {
+                    const isDefault = index === 0;
+                    const checkedAttribute = isDefault ? 'checked' : '';
+                    const activeClass = isDefault ? 'active' : '';
+                    return `
+                        <div>
+                            <input type="radio" id="weight-${weight.id}" name="weight-option" value="${weight.id}" class="hidden peer" ${checkedAttribute}>
+                            <label for="weight-${weight.id}" class="weight-option-label px-4 py-2 rounded-full border border-gray-300 transition cursor-pointer ${activeClass}">
+                                ${weight.arabicName}
+                            </label>
+                        </div>
+                    `;
+                }).join('');
+                
+                selectedWeight = menuDatabase.weightsAddons[0];
+                updateCustomizePrice();
+
+                document.querySelectorAll('input[name="weight-option"]').forEach(radio => {
+                    radio.addEventListener('change', () => {
+                        const weightId = parseInt(radio.value);
+                        selectedWeight = menuDatabase.weightsAddons.find(w => w.id === weightId);
+                        
+                        document.querySelectorAll('.weight-option-label').forEach(label => {
+                            label.classList.remove('active');
+                        });
+                        document.querySelector(`label[for="weight-${weightId}"]`).classList.add('active');
+                        
+                        updateCustomizePrice();
+                    });
+                });
+            } else {
+                weightOptionsContainer.classList.add('hidden');
+            }
+
+            saladsOptionsContainer.innerHTML = menuDatabase.saladsAddons.map(salad => `
+                <button class="customize-btn px-4 py-2 rounded-full border border-gray-300 transition" data-id="${salad.id}" data-type="salad">${salad.arabicName}</button>
+            `).join('');
+            saucesOptionsContainer.innerHTML = menuDatabase.saucesAddons.map(sauce => `
+                <button class="customize-btn px-4 py-2 rounded-full border border-gray-300 transition" data-id="${sauce.id}" data-type="sauce">${sauce.arabicName}</button>
+            `).join('');
+
+            document.querySelectorAll('.customize-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const type = btn.dataset.type;
+                    btn.classList.toggle('active');
+
+                    const id = parseInt(btn.dataset.id);
+                    if (type === 'salad') {
+                        if (btn.classList.contains('active')) {
+                            const salad = menuDatabase.saladsAddons.find(s => s.id === id);
+                            if (salad) selectedSalads.push(salad);
+                        } else {
+                            selectedSalads = selectedSalads.filter(s => s.id !== id);
+                        }
+                    } else if (type === 'sauce') {
+                        if (btn.classList.contains('active')) {
+                            const sauce = menuDatabase.saucesAddons.find(s => s.id === id);
+                            if (sauce) selectedSauces.push(sauce);
+                        } else {
+                            selectedSauces = selectedSauces.filter(s => s.id !== id);
+                        }
+                    }
+                });
+            });
+        }
+
+        finalizeAddBtn.addEventListener('click', () => {
+            const customizedItem = {
+                ...currentCustomizingItem,
+                selectedWeight: selectedWeight,
+                selectedSalads: selectedSalads,
+                selectedSauces: selectedSauces,
+                quantity: 1
+            };
+            cart.push(customizedItem);
+            customizeModal.classList.add('hidden');
+            updateCartCount();
+            showNotification();
+            updateCartDisplay();
+            selectedWeight = null;
+            selectedSalads = [];
+            selectedSauces = [];
+        });
+
+        closeCustomizeBtn.addEventListener('click', () => {
+            customizeModal.classList.add('hidden');
+            selectedWeight = null;
+            selectedSalads = [];
+            selectedSauces = [];
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const initialSection = window.location.hash.substring(1) || 'homeSection';
+            navigateTo(initialSection);
+        });
     </script>
 </body>
 </html>
