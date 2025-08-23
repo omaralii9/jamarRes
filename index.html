@@ -45,11 +45,11 @@
         .cart-item:not(:last-child) {
             border-bottom: 1px solid #e5e7eb;
         }
-        #orderTypeButtons .active, #paymentMethodButtons .active, .city-btn.active {
+        #orderTypeButtons .active, #paymentMethodButtons .active, .city-btn.active, .table-btn.active {
             background-color: var(--primary);
             color: white;
         }
-        #deliveryCities.hidden, #deliveryAddress.hidden {
+        #deliveryCities.hidden, #deliveryAddress.hidden, #tableNumber.hidden {
             display: none;
         }
         .nav-btn.active {
@@ -256,15 +256,30 @@
                             <button data-type="dineIn" class="px-4 py-2 border rounded-lg transition active">داخل المطعم</button>
                             <button data-type="takeaway" class="px-4 py-2 border rounded-lg transition">توصيل خارجي</button>
                         </div>
+                        
+                        <div id="tableNumber" class="mt-3">
+                            <h4 class="font-bold mb-2">اختر رقم الطاولة:</h4>
+                            <div id="tableButtons" class="flex flex-wrap gap-2">
+                                <button class="table-btn px-4 py-2 border rounded-full transition" data-table="1">1</button>
+                                <button class="table-btn px-4 py-2 border rounded-full transition" data-table="2">2</button>
+                                <button class="table-btn px-4 py-2 border rounded-full transition" data-table="3">3</button>
+                                <button class="table-btn px-4 py-2 border rounded-full transition" data-table="4">4</button>
+                                <button class="table-btn px-4 py-2 border rounded-full transition" data-table="5">5</button>
+                                <button class="table-btn px-4 py-2 border rounded-full transition" data-table="6">6</button>
+                            </div>
+                        </div>
+                        
                         <div id="deliveryCities" class="mt-3 hidden">
                             <h4 class="font-bold mb-2">اختر المدينة (رسوم التوصيل):</h4>
                             <div id="cityButtons" class="flex flex-wrap gap-2">
+                                <button class="city-btn px-4 py-2 border rounded-full transition" data-city="here" data-delivery="0">أنا هنا (0 ش)</button>
                                 <button class="city-btn px-4 py-2 border rounded-full transition" data-city="tulkarm" data-delivery="10">طولكرم 10 ش</button>
                                 <button class="city-btn px-4 py-2 rounded-full transition" data-city="jenin" data-delivery="20">جنين 20 ش</button>
                                 <button class="city-btn px-4 py-2 rounded-full transition" data-city="nablus" data-delivery="25">نابلس 25 ش</button>
                                 <button class="city-btn px-4 py-2 rounded-full transition" data-city="ramallah" data-delivery="30">رام الله 30 ش</button>
                             </div>
                         </div>
+                        
                         <div id="deliveryAddress" class="mt-3 hidden">
                             <h4 class="font-bold mb-2">عنوان التوصيل:</h4>
                             <p class="text-sm text-gray-600 mb-2">يرجى كتابة عنوانك بالتفصيل (اسم الشارع، رقم المبنى، الحي).</p>
@@ -460,6 +475,10 @@
         const deliveryFeeContainer = document.getElementById('deliveryFeeContainer');
         const cartTotal = document.getElementById('cartTotal');
         const orderTypeButtons = document.querySelectorAll('#orderTypeButtons button');
+        
+        const tableNumberContainer = document.getElementById('tableNumber');
+        const tableButtons = document.querySelectorAll('#tableButtons .table-btn');
+        
         const deliveryCities = document.getElementById('deliveryCities');
         const cityButtons = document.querySelectorAll('#cityButtons .city-btn');
         const deliveryAddress = document.getElementById('deliveryAddress');
@@ -483,6 +502,7 @@
         let cart = [];
         let currentOrderType = 'dineIn';
         let currentDeliveryFee = 0;
+        let currentTableNumber = null;
         let currentPaymentMethod = 'cash';
 
         function navigateTo(sectionId) {
@@ -639,17 +659,31 @@
                 orderTypeButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
                 currentOrderType = button.dataset.type;
+                
+                // التحكم في إظهار وإخفاء خيارات الطاولة والتوصيل
                 if (currentOrderType === 'takeaway') {
                     deliveryCities.classList.remove('hidden');
                     deliveryAddress.classList.remove('hidden');
                     deliveryFeeContainer.classList.remove('hidden');
+                    tableNumberContainer.classList.add('hidden');
+                    currentTableNumber = null;
                 } else {
                     deliveryCities.classList.add('hidden');
                     deliveryAddress.classList.add('hidden');
                     deliveryFeeContainer.classList.add('hidden');
+                    tableNumberContainer.classList.remove('hidden');
                     currentDeliveryFee = 0;
                 }
                 calculateTotals();
+            });
+        });
+        
+        // حدث جديد لأزرار الطاولات
+        tableButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tableButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentTableNumber = button.dataset.table;
             });
         });
 
@@ -710,18 +744,26 @@
             });
 
             message += `\nالمجموع: ${cartSubtotal.textContent}`;
-            if (currentOrderType === 'takeaway') {
-                message += `\nرسوم التوصيل: ${deliveryFee.textContent}`;
-            }
-            message += `\nالإجمالي: ${cartTotal.textContent}\n\n`;
-            message += `نوع الطلب: ${currentOrderType === 'dineIn' ? 'داخل المطعم' : 'توصيل خارجي'}`;
+            message += `\nنوع الطلب: ${currentOrderType === 'dineIn' ? 'داخل المطعم' : 'توصيل خارجي'}`;
 
+            if (currentOrderType === 'dineIn') {
+                if (!currentTableNumber) {
+                    alert('يرجى اختيار رقم الطاولة.');
+                    return;
+                }
+                message += `\nرقم الطاولة: ${currentTableNumber}`;
+            }
+            
             if (currentOrderType === 'takeaway') {
                 const selectedCityButton = document.querySelector('#cityButtons .active');
                 const selectedCityName = selectedCityButton ? selectedCityButton.textContent.split(' ')[0] : '[لم يتم اختيار مدينة]';
                 const deliveryAddressText = addressInput.value.trim();
+                message += `\nرسوم التوصيل: ${deliveryFee.textContent}`;
+                message += `\nالإجمالي: ${cartTotal.textContent}`;
                 message += `\nالمدينة: ${selectedCityName}`;
                 message += `\nعنوان التوصيل: ${deliveryAddressText || '[لم يتم إدخال عنوان]'}`;
+            } else {
+                 message += `\nالإجمالي: ${cartTotal.textContent}`;
             }
 
             message += `\nطريقة الدفع: ${currentPaymentMethod === 'cash' ? 'الدفع عند الاستلام' : 'فيزا'}\n\n`;
