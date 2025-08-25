@@ -345,7 +345,7 @@
                         </div>
                 </div>
                 <div class="mb-6">
-                    <h4 class="font-bold mb-2">اختر الصوص:</h4>
+                    <h4 class="font-bold mb-2">اختر الصوص: <span class="text-xs text-gray-500">(أول 2 مجانًا، ثم 3 شيكل لكل صوص إضافي)</span></h4>
                     <div id="saucesOptions" class="flex flex-wrap gap-2">
                         </div>
                 </div>
@@ -440,11 +440,11 @@
                 { id: 908, arabicName: 'سلطة جرجير', price: 0 }
             ],
             saucesAddons: [
-                { id: 1001, arabicName: 'صوص الثوم', price: 0 },
-                { id: 1002, arabicName: 'صوص الباربكيو', price: 0 },
-                { id: 1003, arabicName: 'صوص الرانش', price: 0 },
-                { id: 1004, arabicName: 'صوص الشيف', price: 0 },
-                { id: 1005, arabicName: 'صوص الجبن', price: 0 }
+                { id: 1001, arabicName: 'صوص الثوم', price: 3.00 },
+                { id: 1002, arabicName: 'صوص الباربكيو', price: 3.00 },
+                { id: 1003, arabicName: 'صوص الرانش', price: 3.00 },
+                { id: 1004, arabicName: 'صوص الشيف', price: 3.00 },
+                { id: 1005, arabicName: 'صوص الجبن', price: 3.00 }
             ],
             weightsAddons: [
                 { id: 1101, arabicName: '120 جرام', price: 0 },
@@ -578,6 +578,20 @@
             cartCount.textContent = totalItems;
         }
 
+        function calculateSaucePrice() {
+            const extraSauces = selectedSauces.length > 2 ? selectedSauces.length - 2 : 0;
+            return extraSauces * 3.00;
+        }
+
+        function updateCustomizePrice() {
+            let totalPrice = currentCustomizingItem.price;
+            if (selectedWeight) {
+                totalPrice += selectedWeight.price;
+            }
+            totalPrice += calculateSaucePrice();
+            customizePriceDisplay.textContent = totalPrice.toFixed(2) + ' شيكل';
+        }
+
         function updateCartDisplay() {
             if (cart.length === 0) {
                 emptyCartMessage.classList.remove('hidden');
@@ -586,21 +600,34 @@
                 emptyCartMessage.classList.add('hidden');
                 cartItemsContainer.innerHTML = cart.map((item, index) => {
                     let optionsHtml = '';
+                    let itemPrice = item.price;
+
                     if (item.selectedWeight) {
                         optionsHtml += `<p class="text-sm text-gray-500 mr-4">▪ الوزن: ${item.selectedWeight.arabicName}</p>`;
+                        itemPrice += item.selectedWeight.price;
                     }
+
                     if (item.selectedSalads && item.selectedSalads.length > 0) {
                         item.selectedSalads.forEach(salad => {
                             optionsHtml += `<p class="text-sm text-gray-500 mr-4">▪ مع سلطة: ${salad.arabicName}</p>`;
                         });
                     }
+
                     if (item.selectedSauces && item.selectedSauces.length > 0) {
-                        item.selectedSauces.forEach(sauce => {
-                            optionsHtml += `<p class="text-sm text-gray-500 mr-4">▪ مع صوص: ${sauce.arabicName}</p>`;
+                        const extraSauces = item.selectedSauces.length > 2 ? item.selectedSauces.length - 2 : 0;
+                        const sauceCost = extraSauces * 3.00;
+                        itemPrice += sauceCost;
+
+                        item.selectedSauces.forEach((sauce, i) => {
+                            const saucePriceText = i < 2 ? ' (مجاني)' : ` (+${sauce.price.toFixed(2)} شيكل)`;
+                            optionsHtml += `<p class="text-sm text-gray-500 mr-4">▪ مع صوص: ${sauce.arabicName}${saucePriceText}</p>`;
                         });
+
+                        if (extraSauces > 0) {
+                             optionsHtml += `<p class="text-sm text-gray-600 font-semibold mr-4">▪ تكلفة الصوص الإضافي: ${sauceCost.toFixed(2)} شيكل</p>`;
+                        }
                     }
-                    
-                    const itemPrice = (item.price + (item.selectedWeight ? item.selectedWeight.price : 0));
+
                     return `
                         <div class="cart-item py-3 px-2 flex justify-between items-center">
                             <div>
@@ -706,7 +733,14 @@
 
         function calculateTotals() {
             const subtotal = cart.reduce((sum, item) => {
-                const itemPrice = item.price + (item.selectedWeight ? item.selectedWeight.price : 0);
+                let itemPrice = item.price;
+                if (item.selectedWeight) {
+                    itemPrice += item.selectedWeight.price;
+                }
+                if (item.selectedSauces) {
+                    const extraSauces = item.selectedSauces.length > 2 ? item.selectedSauces.length - 2 : 0;
+                    itemPrice += extraSauces * 3.00;
+                }
                 return sum + (itemPrice * item.quantity);
             }, 0);
             const delivery = currentOrderType === 'takeaway' ? currentDeliveryFee : 0;
@@ -726,21 +760,37 @@
             let message = 'السلام عليكم، أريد طلب التالي من منيو جَمَار :\n\n';
 
             cart.forEach(item => {
-                const itemPrice = item.price + (item.selectedWeight ? item.selectedWeight.price : 0);
-                message += `- ${item.arabicName || item.name} (${item.quantity}): ${itemPrice.toFixed(2)} شيكل\n`;
+                let itemPrice = item.price;
+                let itemDetails = '';
+                
                 if (item.selectedWeight) {
-                    message += `  > الوزن: ${item.selectedWeight.arabicName}\n`;
+                    itemPrice += item.selectedWeight.price;
+                    itemDetails += `  > الوزن: ${item.selectedWeight.arabicName}\n`;
                 }
+
                 if (item.selectedSalads && item.selectedSalads.length > 0) {
                     item.selectedSalads.forEach(salad => {
-                        message += `  > مع سلطة: ${salad.arabicName}\n`;
+                        itemDetails += `  > مع سلطة: ${salad.arabicName}\n`;
                     });
                 }
+
                 if (item.selectedSauces && item.selectedSauces.length > 0) {
-                    item.selectedSauces.forEach(sauce => {
-                        message += `  > مع صوص: ${sauce.arabicName}\n`;
+                    const extraSauces = item.selectedSauces.length > 2 ? item.selectedSauces.length - 2 : 0;
+                    const sauceCost = extraSauces * 3.00;
+                    itemPrice += sauceCost;
+                    
+                    item.selectedSauces.forEach((sauce, i) => {
+                         const saucePriceText = i < 2 ? ' (مجاني)' : ` (+3.00 شيكل)`;
+                         itemDetails += `  > مع صوص: ${sauce.arabicName}${saucePriceText}\n`;
                     });
+
+                    if (extraSauces > 0) {
+                         itemDetails += `  > تكلفة الصوص الإضافي: ${sauceCost.toFixed(2)} شيكل\n`;
+                    }
                 }
+                
+                message += `- ${item.arabicName || item.name} (${item.quantity}): ${itemPrice.toFixed(2)} شيكل\n`;
+                message += itemDetails;
             });
 
             message += `\nالمجموع: ${cartSubtotal.textContent}`;
@@ -851,14 +901,7 @@
             selectedSalads = [];
             selectedSauces = [];
 
-            function updateCustomizePrice() {
-                let totalPrice = item.price;
-                if (selectedWeight) {
-                    totalPrice += selectedWeight.price;
-                }
-                customizePriceDisplay.textContent = totalPrice.toFixed(2) + ' شيكل';
-            }
-
+            // عرض خيارات الوزن فقط لبرجر اللحم
             if (item.category === 'beefBurgers') {
                 weightOptionsContainer.classList.remove('hidden');
                 
@@ -896,15 +939,18 @@
                 weightOptionsContainer.classList.add('hidden');
             }
 
+            // عرض خيارات السلطات
             saladsOptionsContainer.innerHTML = menuDatabase.saladsAddons.map(salad => `
                 <button class="customize-btn px-4 py-2 rounded-full border border-gray-300 transition" data-id="${salad.id}" data-type="salad">${salad.arabicName}</button>
             `).join('');
+
+            // عرض خيارات الصوصات
             saucesOptionsContainer.innerHTML = menuDatabase.saucesAddons.map(sauce => `
                 <button class="customize-btn px-4 py-2 rounded-full border border-gray-300 transition" data-id="${sauce.id}" data-type="sauce">${sauce.arabicName}</button>
             `).join('');
 
             document.querySelectorAll('.customize-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
+                btn.addEventListener('click', (e) => {
                     const type = btn.dataset.type;
                     btn.classList.toggle('active');
 
@@ -923,9 +969,11 @@
                         } else {
                             selectedSauces = selectedSauces.filter(s => s.id !== id);
                         }
+                        updateCustomizePrice();
                     }
                 });
             });
+            updateCustomizePrice();
         }
 
         finalizeAddBtn.addEventListener('click', () => {
